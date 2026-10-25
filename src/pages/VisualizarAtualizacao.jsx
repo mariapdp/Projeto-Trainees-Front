@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useAtualizacoes } from '../context/AtualizacaoContext'
-import { formatarData } from '../components/CardAtualizacao'
+import { formatarData } from '../utils/datas'
 
 function VisualizarAtualizacao() {
   const { id } = useParams()
@@ -33,7 +33,10 @@ function VisualizarAtualizacao() {
             <span key={a} className="tag">{a}</span>
           ))}
         </span>
-        <time>Publicado em {formatarData(atualizacao.dataPublicacao)}</time>
+        <time>
+          Publicado em {formatarData(atualizacao.dataPublicacao)}
+          {atualizacao.dataEdicao && ` · Editado em ${formatarData(atualizacao.dataEdicao)}`}
+        </time>
       </p>
       <p className="meta">Id: {atualizacao.id}</p>
       <p className="texto">{atualizacao.conteudo}</p>

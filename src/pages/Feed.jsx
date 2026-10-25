@@ -3,10 +3,7 @@ import { Link } from 'react-router-dom'
 import { useAtualizacoes } from '../context/AtualizacaoContext'
 import CardAtualizacao from '../components/CardAtualizacao'
 import { AREAS } from '../constants/config'
-
-function dataLocal(iso) {
-  return new Date(iso).toLocaleDateString('en-CA') // AAAA-MM-DD
-}
+import { dataParaInput } from '../utils/datas'
 
 function Feed() {
   const { atualizacoes } = useAtualizacoes()
@@ -19,7 +16,7 @@ function Feed() {
     if (area && !a.areas.includes(area)) return false
     if (termo && !a.titulo.toLowerCase().includes(termo) && !a.id.toLowerCase().includes(termo))
       return false
-    if (data && dataLocal(a.dataPublicacao) !== data) return false
+    if (data && dataParaInput(a.dataPublicacao) !== data) return false
     return true
   })
 

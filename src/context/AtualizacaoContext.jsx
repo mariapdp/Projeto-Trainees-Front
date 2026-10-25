@@ -17,7 +17,11 @@ export function AtualizacaoProvider({ children }) {
   const [atualizacoes, setAtualizacoes] = useState(carregar)
 
   useEffect(() => {
-    localStorage.setItem(CHAVE, JSON.stringify(atualizacoes))
+    try {
+      localStorage.setItem(CHAVE, JSON.stringify(atualizacoes))
+    } catch {
+      // armazenamento cheio ou indisponível: segue só em memória
+    }
   }, [atualizacoes])
 
   const buscarAtualizacao = (id) => atualizacoes.find((a) => a.id === id)
@@ -36,7 +40,11 @@ export function AtualizacaoProvider({ children }) {
 
   const editarAtualizacao = (id, { titulo, conteudo, areas }) => {
     setAtualizacoes((lista) =>
-      lista.map((a) => (a.id === id ? { ...a, titulo, conteudo, areas } : a)),
+      lista.map((a) =>
+        a.id === id
+          ? { ...a, titulo, conteudo, areas, dataEdicao: new Date().toISOString() }
+          : a,
+      ),
     )
   }
 
@@ -60,5 +68,9 @@ export function AtualizacaoProvider({ children }) {
 }
 
 export function useAtualizacoes() {
-  return useContext(AtualizacaoContext)
+  const contexto = useContext(AtualizacaoContext)
+  if (!contexto) {
+    throw new Error('useAtualizacoes deve ser usado dentro de <AtualizacaoProvider>')
+  }
+  return contexto
 }

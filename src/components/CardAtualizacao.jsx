@@ -1,11 +1,7 @@
-/* eslint-disable react-refresh/only-export-components */
 import { Link } from 'react-router-dom'
+import { formatarData } from '../utils/datas'
 
 const TAMANHO_PREVIA = 120
-
-export function formatarData(iso) {
-  return new Date(iso).toLocaleDateString('pt-BR')
-}
 
 function CardAtualizacao({ atualizacao }) {
   const { id, titulo, conteudo, areas, dataPublicacao } = atualizacao

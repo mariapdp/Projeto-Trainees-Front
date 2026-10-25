@@ -16,10 +16,10 @@ function FormularioAtualizacao({ valoresIniciais, onEnviar, textoBotao }) {
   const validar = () => {
     const novos = {}
     if (!titulo.trim()) novos.titulo = 'Informe o título.'
-    else if (titulo.length > LIMITE_TITULO)
+    else if (titulo.trim().length > LIMITE_TITULO)
       novos.titulo = `O título pode ter no máximo ${LIMITE_TITULO} caracteres.`
     if (!conteudo.trim()) novos.conteudo = 'Informe o conteúdo.'
-    else if (conteudo.length > LIMITE_CONTEUDO)
+    else if (conteudo.trim().length > LIMITE_CONTEUDO)
       novos.conteudo = `O conteúdo pode ter no máximo ${LIMITE_CONTEUDO} caracteres.`
     if (areas.length === 0) novos.areas = 'Selecione pelo menos uma área.'
     return novos

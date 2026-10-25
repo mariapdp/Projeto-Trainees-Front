@@ -12,7 +12,7 @@ function App() {
       </header>
       <main className="conteudo">
         <Routes>
-          <Route path="/" element={<Feed />} />
+          <Route path="/" element={<Navigate to="/feed" replace />} />
           <Route path="/feed" element={<Feed />} />
           <Route path="/criar-atualizacao" element={<CriarAtualizacao />} />
           <Route path="/atualizacao/:id" element={<VisualizarAtualizacao />} />
