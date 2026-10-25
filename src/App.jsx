@@ -8,6 +8,7 @@ function App() {
   return (
     <>
       <header className="topo">
+        <img src={`${import.meta.env.BASE_URL}logo.png`} alt="" />
         <Link to="/feed" className="marca">Atualizações das áreas</Link>
       </header>
       <main className="conteudo">

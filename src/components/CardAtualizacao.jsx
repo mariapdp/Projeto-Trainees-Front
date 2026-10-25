@@ -17,7 +17,7 @@ function CardAtualizacao({ atualizacao }) {
       <div className="card-rodape">
         <span className="tags">
           {areas.map((a) => (
-            <span key={a} className="tag">{a}</span>
+            <span key={a} className="tag" data-area={a}>{a}</span>
           ))}
         </span>
         <time>{formatarData(dataPublicacao)}</time>
